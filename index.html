@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>To-Do List</title>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+
+        <h2>To-Do List</h2>
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <button>Todas as tarefas</button>
+                </li>
+
+                <li>
+                    <button>Pendentes</button>
+                </li>
+
+                <li>
+                    <button>Concluídas</button>
+                </li>
+
+                <li>
+                    <button>Hoje</button>
+                </li>
+
+                <li>
+                    <button>Importantes</button>
+                </li>
+
+            </ul>
+
+        </nav>
+
+        <section class="categories">
+
+            <h3>Categorias</h3>
+
+            <ul>
+
+                <li>
+                    <span>Trabalho</span>
+                    <span class="count" id="countTrabalho">0</span>
+                </li>
+
+                <li>
+                    <span>Estudos</span>
+                    <span class="count" id="countEstudos">0</span>
+                </li>
+
+                <li>
+                    <span>Pessoal</span>
+                    <span class="count" id="countPessoal">0</span>
+                </li>
+
+                <li>
+                    <span>Saúde</span>
+                    <span class="count" id="countSaude">0</span>
+                </li>
+
+            </ul>
+
+        </section>
+
+    </aside>
+
+    <main class="container">
+
+        <header class="header">
+
+            <h1>Olá, Felipe 👋</h1>
+
+            <p>
+                Aqui está o que você precisa fazer hoje.
+            </p>
+
+        </header>
+
+        <form class="add-task-form">
+
+            <h2>Adicionar nova tarefa</h2>
+
+            <div class="form-group">
+
+                <input
+                    type="text"
+                    placeholder="O que precisa ser feito?"
+                >
+
+                <input type="date">
+
+                <input type="time">
+
+                <select>
+
+                    <option value="" disabled selected>
+                        Categoria
+                    </option>
+
+                    <option value="trabalho">
+                        Trabalho
+                    </option>
+
+                    <option value="estudos">
+                        Estudos
+                    </option>
+
+                    <option value="saude">
+                        Saúde
+                    </option>
+
+                    <option value="pessoal">
+                        Pessoal
+                    </option>
+
+                </select>
+
+                <button type="submit">
+                    Adicionar
+                </button>
+
+            </div>
+
+        </form>
+
+        <section class="tasks-section">
+
+            <div class="tasks-header">
+
+                <h2 >Todas suas tarefas</h2>
+
+                <span class="count" id="countTodasTarefas">
+                    1
+                </span>
+
+            </div>
+
+            <div id="taskList">
+
+                <div class="task-item">
+
+                    <div class="task-info">
+
+                        <input type="checkbox">
+
+                        <div>
+
+                            <p id="task-text" class="task-text">
+                                Estudar JavaScript
+                            </p>
+
+                            <span class="task-category">
+                                Trabalho
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="task-details">
+
+                        <p class="task-date">
+                            16/05/2026
+                        </p>
+
+                        <p class="task-time">
+                            19:00
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>
