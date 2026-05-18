@@ -5,54 +5,58 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
-
-    background: #0f172a;
-    color: #fff;
-
     min-height: 100vh;
 
     display: flex;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #FBE0C3;
+
+    color: #344648;
 }
 
-/* SIDEBAR */
+/* BARRA LATERAL */
 
-.sidebar {
+.barra-lateral {
     width: 280px;
 
-    background: #111827;
+    background: #344648;
 
-    padding: 30px 20px;
-
-    border-right: 1px solid #1e293b;
+    padding: 20px 10px;
 
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 35px;
 }
 
-.sidebar h2 {
-    font-size: 28px;
+.logo h2 {
+    color: #FBE0C3;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 20px;
 }
 
-.sidebar ul {
+.menu-lateral ul,
+.secao-categorias ul {
     list-style: none;
 
     display: flex;
     flex-direction: column;
+
     gap: 12px;
 }
 
-.sidebar button {
+.menu-lateral button {
     width: 100%;
-
-    background: #1e293b;
 
     border: none;
 
-    color: white;
+    background: transparent;
 
-    padding: 14px;
+    color: #FBE0C3;
+
+    padding: 10px;
 
     border-radius: 12px;
 
@@ -61,24 +65,26 @@ body {
     cursor: pointer;
 
     transition: 0.3s;
+
+    font-size: 15px;
 }
 
-.sidebar button:hover {
-    background: #7c3aed;
+.menu-lateral button:hover {
+    background: #7D8E95;
 }
 
-/* CATEGORIAS */
+.secao-categorias h3 {
+    margin-bottom: 15px;
 
-.categories {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    color: #FFBB98;
 }
 
-.categories li {
-    background: #1e293b;
+.secao-categorias li {
+    background: rgba(255, 255, 255, 0.05);
 
-    padding: 12px 16px;
+    color: #FBE0C3;
+
+    padding: 12px 14px;
 
     border-radius: 12px;
 
@@ -87,13 +93,15 @@ body {
     align-items: center;
 }
 
-.count {
+.contador {
     width: 28px;
     height: 28px;
 
-    background: #7c3aed;
-
     border-radius: 50%;
+
+    background: #FFBB98;
+
+    color: #344648;
 
     display: flex;
     justify-content: center;
@@ -103,9 +111,9 @@ body {
     font-weight: bold;
 }
 
-/* CONTAINER */
+/* CONTAINER PRINCIPAL */
 
-.container {
+.container-principal {
     flex: 1;
 
     padding: 40px;
@@ -115,46 +123,92 @@ body {
     gap: 30px;
 }
 
-/* HEADER */
+/* CABEÇALHO */
 
-.header h1 {
+.adcionar-tarefa{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 60px;
+}
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saudacao-usuario h1 {
     font-size: 38px;
 
     margin-bottom: 10px;
 }
 
-.header p {
-    color: #94a3b8;
+.saudacao-usuario p {
+    color: #344648;
 }
 
-/* FORM */
+.usuario-logado {
+    background: rgba(255, 255, 255, 0.5);
 
-.add-task-form {
-    background: #111827;
+    padding: 15px 20px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#botaoDeslogar {
+    border: none;
+
+    background: #344648;
+
+    color: #FBE0C3;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#botaoDeslogar:hover {
+    background: #7D8E95;
+}
+
+/* FORMULÁRIO */
+
+.formulario-tarefa {
+    background: rgba(255, 255, 255, 0.4);
 
     padding: 25px;
 
     border-radius: 20px;
 
+    backdrop-filter: blur(10px);
+
     display: flex;
     flex-direction: column;
+
     gap: 20px;
 }
 
-.form-group {
+.grupo-formulario {
     display: flex;
+
     gap: 15px;
 
     flex-wrap: wrap;
 }
 
-.form-group input,
-.form-group select {
-    background: #1e293b;
+.grupo-formulario input,
+.grupo-formulario select {
+    background: white;
 
-    border: 1px solid #334155;
-
-    color: white;
+    border: 1px solid #7D8E95;
 
     padding: 14px 16px;
 
@@ -162,26 +216,28 @@ body {
 
     outline: none;
 
+    color: #344648;
+
     transition: 0.3s;
 }
 
-.form-group input:focus,
-.form-group select:focus {
-    border-color: #7c3aed;
+.grupo-formulario input:focus,
+.grupo-formulario select:focus {
+    border-color: #FFBB98;
 
-    box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+    box-shadow: 0 0 10px rgba(255, 187, 152, 0.5);
 }
 
-.form-group input[type="text"] {
+#inputTarefa {
     flex: 1;
 }
 
-.form-group button {
-    background: #7c3aed;
-
+#botaoAdicionar {
     border: none;
 
-    color: white;
+    background: #344648;
+
+    color: #FBE0C3;
 
     padding: 14px 24px;
 
@@ -189,37 +245,39 @@ body {
 
     cursor: pointer;
 
-    font-weight: bold;
-
     transition: 0.3s;
+
+    font-weight: bold;
 }
 
-.form-group button:hover {
-    background: #6d28d9;
+#botaoAdicionar:hover {
+    background: #7D8E95;
 }
 
-/* TASKS */
+/* TAREFAS */
 
-.tasks-section {
+.secao-tarefas {
     display: flex;
     flex-direction: column;
+
     gap: 20px;
 }
 
-.tasks-header {
+.cabecalho-tarefas {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#taskList {
+#listaTarefas {
     display: flex;
     flex-direction: column;
+
     gap: 20px;
 }
 
-.task-item {
-    background: #111827;
+.item-tarefa {
+    background: rgba(255, 255, 255, 0.45);
 
     padding: 20px;
 
@@ -230,40 +288,53 @@ body {
     align-items: center;
 
     transition: 0.3s;
-
-    border: 1px solid transparent;
 }
 
-.task-item:hover {
+.item-tarefa:hover {
     transform: translateY(-3px);
-
-    border-color: #7c3aed;
 }
 
-.task-info {
+.informacoes-tarefa {
     display: flex;
     align-items: center;
-    gap: 15px;
+
+    gap: 20px;
 }
 
-.task-info input {
-    width: 18px;
-    height: 18px;
+.status-tarefa {
+    padding: 8px 14px;
 
-    cursor: pointer;
+    border-radius: 30px;
+
+    font-size: 13px;
+
+    font-weight: bold;
 }
 
-.task-text {
+.pendente {
+    background: #FFBB98;
+
+    color: #344648;
+}
+
+.concluida {
+    background: #7D8E95;
+
+    color: white;
+}
+
+.texto-tarefa {
     font-size: 18px;
+
     font-weight: bold;
 
-    margin-bottom: 6px;
+    margin-bottom: 8px;
 }
 
-.task-category {
-    background: #1e293b;
+.categoria-tarefa {
+    background: #344648;
 
-    color: #c4b5fd;
+    color: #FBE0C3;
 
     padding: 5px 10px;
 
@@ -272,12 +343,31 @@ body {
     font-size: 12px;
 }
 
-.task-details {
+.detalhes-tarefa {
     display: flex;
     align-items: center;
-    gap: 20px;
 
-    color: #94a3b8;
+    gap: 20px;
+}
+
+.botao-status {
+    border: none;
+
+    background: #344648;
+
+    color: #FBE0C3;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.botao-status:hover {
+    background: #7D8E95;
 }
 
 /* RESPONSIVO */
@@ -288,22 +378,30 @@ body {
         flex-direction: column;
     }
 
-    .sidebar {
+    .barra-lateral {
         width: 100%;
-
-        border-right: none;
-
-        border-bottom: 1px solid #1e293b;
     }
 
-    .form-group {
-        flex-direction: column;
-    }
-
-    .task-item {
+    .cabecalho {
         flex-direction: column;
         align-items: flex-start;
+
         gap: 20px;
+    }
+
+    .grupo-formulario {
+        flex-direction: column;
+    }
+
+    .item-tarefa {
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 20px;
+    }
+
+    .detalhes-tarefa {
+        flex-wrap: wrap;
     }
 
 }

@@ -5,18 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 
     <title>To-Do List</title>
 </head>
 
 <body>
 
-    <aside class="sidebar">
+    <aside class="barra-lateral">
 
-        <h2>To-Do List</h2>
+        <div class="logo">
+            <h2>To-Do List</h2>
+        </div>
 
-        <nav>
+        <nav class="menu-lateral">
 
             <ul>
 
@@ -44,7 +46,7 @@
 
         </nav>
 
-        <section class="categories">
+        <section class="secao-categorias">
 
             <h3>Categorias</h3>
 
@@ -52,116 +54,148 @@
 
                 <li>
                     <span>Trabalho</span>
-                    <span class="count" id="countTrabalho">0</span>
+                    <span class="contador" id="contadorTrabalho">0</span>
                 </li>
 
                 <li>
                     <span>Estudos</span>
-                    <span class="count" id="countEstudos">0</span>
+                    <span class="contador" id="contadorEstudos">0</span>
                 </li>
 
                 <li>
                     <span>Pessoal</span>
-                    <span class="count" id="countPessoal">0</span>
+                    <span class="contador" id="contadorPessoal">0</span>
                 </li>
 
                 <li>
                     <span>Saúde</span>
-                    <span class="count" id="countSaude">0</span>
+                    <span class="contador" id="contadorSaude">0</span>
                 </li>
 
             </ul>
 
         </section>
 
+        <div class="usuario-logado">
+
+            <span id="usuarioLogado">
+                Logado como Felipe
+            </span>
+
+            <button id="botaoDeslogar">
+                Sair
+            </button>
+
+        </div>
+
     </aside>
 
-    <main class="container">
+    <main class="container-principal">
 
-        <header class="header">
+        <header class="cabecalho">
 
-            <h1>Olá, Felipe 👋</h1>
+            <div class="saudacao-usuario">
 
-            <p>
-                Aqui está o que você precisa fazer hoje.
-            </p>
+                <h1 id="nomeUsuario">
+                    Olá, Usuário 👋
+                </h1>
+
+                <p>
+                    Aqui está o que você precisa fazer hoje.
+                </p>
+
+            </div>
+
+
 
         </header>
 
-        <form class="add-task-form">
 
-            <h2>Adicionar nova tarefa</h2>
 
-            <div class="form-group">
 
-                <input
-                    type="text"
-                    placeholder="O que precisa ser feito?"
-                >
+        <form class="formulario-tarefa" id="formulario-tarefa">
 
-                <input type="date">
+            <div class="adcionar-tarefa">
+                <h2>Adicionar nova tarefa</h2>
+                <small id="mensagemErro"></small>
+            </div>
+            
+            
 
-                <input type="time">
+            <div class="grupo-formulario">
 
-                <select>
+                <input type="text" id="inputTarefa" placeholder="O que precisa ser feito?">
+                
+
+                <input type="date" id="inputData">
+
+                <input type="time" id="inputHora">
+
+                <select id="inputCategoria">
 
                     <option value="" disabled selected>
                         Categoria
                     </option>
 
-                    <option value="trabalho">
+                    <option value="Trabalho">
                         Trabalho
                     </option>
 
-                    <option value="estudos">
+                    <option value="Estudos">
                         Estudos
                     </option>
 
-                    <option value="saude">
+                    <option value="Saúde">
                         Saúde
                     </option>
 
-                    <option value="pessoal">
+                    <option value="Pessoal">
                         Pessoal
                     </option>
 
                 </select>
 
-                <button type="submit">
+                <button type="submit" id="botaoAdicionar">
                     Adicionar
                 </button>
 
+                
             </div>
 
         </form>
 
-        <section class="tasks-section">
 
-            <div class="tasks-header">
 
-                <h2 >Todas suas tarefas</h2>
 
-                <span class="count" id="countTodasTarefas">
+        <section class="secao-tarefas">
+
+            <div class="cabecalho-tarefas">
+
+                <h2>Todas suas tarefas</h2>
+
+                <span class="contador" id="contadorTodasTarefas">
                     1
                 </span>
 
             </div>
 
-            <div id="taskList">
+            <div id="listaTarefas">
 
-                <div class="task-item">
+                <div class="item-tarefa">
 
-                    <div class="task-info">
+                    <div class="informacoes-tarefa">
 
-                        <input type="checkbox">
+                        <div class="status-tarefa pendente">
+                            Pendente
+                        </div>
 
                         <div>
 
-                            <p id="task-text" class="task-text">
+                            <p class="texto-tarefa">
                                 Estudar JavaScript
                             </p>
 
-                            <span class="task-category">
+                            <span class="categoria-tarefa">
                                 Trabalho
                             </span>
 
@@ -169,15 +203,19 @@
 
                     </div>
 
-                    <div class="task-details">
+                    <div class="detalhes-tarefa">
 
-                        <p class="task-date">
-                            16/05/2026
+                        <p class="data-tarefa">
+                            18/05/2026
                         </p>
 
-                        <p class="task-time">
+                        <p class="hora-tarefa">
                             19:00
                         </p>
+
+                        <button class="botao-status">
+                            Concluir
+                        </button>
 
                     </div>
 
@@ -189,6 +227,9 @@
 
     </main>
 
+
+
+    <script src="js/script.js"></script>
 </body>
 
 </html>
