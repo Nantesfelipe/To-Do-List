@@ -25,23 +25,26 @@ form.addEventListener("submit", function (event) {
 
     const categoriaTarefa = inputCategoria.value;
 
-    const tarefa = inputTarefa.value;
+    const textoTarefa = inputTarefa.value;
 
-    if (!tarefa || !dataTarefa || !horaTarefa || !categoriaTarefa) {
+    if (!textoTarefa || !dataTarefa || !horaTarefa || !categoriaTarefa) {
 
         mensagemErro.textContent = "Por favor, preencha todos os campos!";
 
         return;
     }
 
-    tarefa ={
-        
-        Textotarefa : inputTarefa.value,
-        categoria : inputCategoria.value,
-        hora : inputHora.value,
-        data : inputData.value, 
-    }
+    const tarefa = {
 
+        textoTarefa: textoTarefa,
+
+        categoria: categoriaTarefa,
+
+        hora: horaTarefa,
+
+        data: dataTarefa,
+
+    }
     mensagemErro.textContent = "";
 
 
@@ -55,3 +58,31 @@ form.addEventListener("submit", function (event) {
 
 
 });
+
+const tarefas = [
+    tarefas.push(tarefa)
+];
+
+const itemTarefa = document.createElement('div');
+const informacoesTarefa = document.createElement('div'); //div container n precisa de textContent
+const statusTarefa = document.createElement('div');
+
+itemTarefa.classList.add('item-tarefa');
+informacoesTarefa.classList.add('informacoes-tarefa');
+statusTarefa.classList.add('status-tarefa');
+
+statusTarefa.textContent = "Pendente";
+
+const div = document.createElement('div');
+const textoTarefa = document.createElement('p');
+const categoriaTarefa = document.createElement('span');
+
+textoTarefa.classList.add('texto-tarefa');
+categoriaTarefa.classList.add('categoria-tarefa');  
+
+textoTarefa.textContent = tarefa.textoTarefa;
+categoriaTarefa.textContent = tarefa.categoria;
+
+// elementos adcionados as seguintes variaveis:
+//itemTarefa, informacoesTarefa, statusTarefa, textoTarefa, categoriaTarefa
+//proximo passo: adicionar os elementos a pagina, usando appendChild ou append
