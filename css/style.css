@@ -294,12 +294,6 @@ body {
     transform: translateY(-3px);
 }
 
-.informacoes-tarefa {
-    display: flex;
-    align-items: center;
-
-    gap: 20px;
-}
 
 .status-tarefa {
     padding: 8px 14px;
@@ -329,6 +323,9 @@ body {
     font-weight: bold;
 
     margin-bottom: 8px;
+
+
+   
 }
 
 .categoria-tarefa {
@@ -343,19 +340,48 @@ body {
     font-size: 12px;
 }
 
-.detalhes-tarefa {
+.item-tarefa {
+    background: rgba(255, 255, 255, 0.45);
+
+    padding: 20px;
+
+    border-radius: 18px;
+
     display: flex;
     align-items: center;
+    gap: 18px;
 
-    gap: 20px;
+    flex-wrap: wrap;
+
+    transition: 0.3s;
 }
 
-.botao-status {
+.data-tarefa,
+.hora-tarefa {
+    color: #344648;
+
+    font-size: 14px;
+
+    opacity: 0.8;
+}
+
+.texto-tarefa {
+    min-width: 220px;
+}
+.acoes-tarefa {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.botao-status,
+.botao-editar,
+.botao-remover {
     border: none;
-
-    background: #344648;
-
-    color: #FBE0C3;
 
     padding: 10px 16px;
 
@@ -364,12 +390,48 @@ body {
     cursor: pointer;
 
     transition: 0.3s;
+
+    font-weight: bold;
+}
+
+
+/* botão concluir */
+
+.botao-status {
+    background: #344648;
+
+    color: #FBE0C3;
 }
 
 .botao-status:hover {
     background: #7D8E95;
 }
 
+
+/* botão editar */
+
+.botao-editar {
+    background: #FFBB98;
+
+    color: #344648;
+}
+
+.botao-editar:hover {
+    opacity: 0.8;
+}
+
+
+/* botão remover */
+
+.botao-remover {
+    background: #d9534f;
+
+    color: white;
+}
+
+.botao-remover:hover {
+    opacity: 0.8;
+} 
 /* RESPONSIVO */
 
 @media (max-width: 900px) {

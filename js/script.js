@@ -1,17 +1,12 @@
 const form = document.querySelector('#formulario-tarefa');
-
 const usuario = JSON.parse(localStorage.getItem("users")) || [];
-
 const inputTarefa = document.querySelector('#inputTarefa');
-
 const inputData = document.querySelector('#inputData');
-
 const inputHora = document.querySelector('#inputHora');
-
 const inputCategoria = document.querySelector('#inputCategoria');
-
 const mensagemErro = document.querySelector('#mensagemErro');
-
+const listaTarefas = document.querySelector('#listaTarefas');
+const tarefas = [];
 
 
 
@@ -19,70 +14,92 @@ form.addEventListener("submit", function (event) {
 
     event.preventDefault();
 
-    const dataTarefa = inputData.value;
+    // valores digitados pelo usuário
+    const valorTextoTarefa = inputTarefa.value;
+    const valorDataTarefa = inputData.value;
+    const valorHoraTarefa = inputHora.value;
+    const valorCategoriaTarefa = inputCategoria.value;
 
-    const horaTarefa = inputHora.value;
 
-    const categoriaTarefa = inputCategoria.value;
 
-    const textoTarefa = inputTarefa.value;
-
-    if (!textoTarefa || !dataTarefa || !horaTarefa || !categoriaTarefa) {
-
+    // validação
+    if (!valorTextoTarefa || !valorDataTarefa || !valorHoraTarefa || !valorCategoriaTarefa) {
         mensagemErro.textContent = "Por favor, preencha todos os campos!";
-
         return;
     }
 
+
+
+    // objeto da tarefa
     const tarefa = {
+        textoTarefa: valorTextoTarefa,
+        categoria: valorCategoriaTarefa,
+        hora: valorHoraTarefa,
+        data: valorDataTarefa,
+    };
 
-        textoTarefa: textoTarefa,
 
-        categoria: categoriaTarefa,
+    // adiciona tarefa no array
+    tarefas.push(tarefa);
 
-        hora: horaTarefa,
+    // CRIAÇÃO DOS ELEMENTOS
+    
+    // card principal da tarefa
+    const itemTarefa = document.createElement('div');
+    itemTarefa.classList.add('item-tarefa');
 
-        data: dataTarefa,
+    // status da tarefa
+    const statusTarefa = document.createElement('div');
+    statusTarefa.classList.add('status-tarefa');
+    statusTarefa.classList.add('pendente');
+    statusTarefa.textContent = "Pendente";
 
-    }
+    // texto da tarefa
+    const textoTarefa = document.createElement('p');
+    textoTarefa.classList.add('texto-tarefa');
+    textoTarefa.textContent = tarefa.textoTarefa;
+
+    // categoria da tarefa
+    const categoriaTarefa = document.createElement('span');
+    categoriaTarefa.classList.add('categoria-tarefa');
+    categoriaTarefa.textContent = tarefa.categoria;
+
+    // data da tarefa
+    const dataTarefa = document.createElement('p');
+    dataTarefa.classList.add('data-tarefa');
+    dataTarefa.textContent = tarefa.data;
+
+    // hora da tarefa
+    const horaTarefa = document.createElement('p');
+    horaTarefa.classList.add('hora-tarefa');
+    horaTarefa.textContent = tarefa.hora;
+
+    // botão da tarefa
+    const botaoStatus = document.createElement('button');
+    botaoStatus.classList.add('botao-status');
+    botaoStatus.textContent = "Concluir";
+    
+    // MONTAGEM DA ESTRUTURA
+    itemTarefa.appendChild(statusTarefa);
+    itemTarefa.appendChild(textoTarefa);
+    itemTarefa.appendChild(categoriaTarefa);
+    itemTarefa.appendChild(dataTarefa);
+    itemTarefa.appendChild(horaTarefa);
+    itemTarefa.appendChild(botaoStatus);
+
+    // adiciona o card na tela
+    listaTarefas.appendChild(itemTarefa);
+
+    // limpa mensagem de erro
     mensagemErro.textContent = "";
 
 
-    console.log(tarefa);
+    // limpa os inputs
+    inputTarefa.value = "";
+    inputData.value = "";
+    inputHora.value = "";
+    inputCategoria.value = "";
 
-    console.log(dataTarefa);
+    console.log(tarefas);
 
-    console.log(horaTarefa);
-
-    console.log(categoriaTarefa);
-
-
-});
-
-const tarefas = [
-    tarefas.push(tarefa)
-];
-
-const itemTarefa = document.createElement('div');
-const informacoesTarefa = document.createElement('div'); //div container n precisa de textContent
-const statusTarefa = document.createElement('div');
-
-itemTarefa.classList.add('item-tarefa');
-informacoesTarefa.classList.add('informacoes-tarefa');
-statusTarefa.classList.add('status-tarefa');
-
-statusTarefa.textContent = "Pendente";
-
-const div = document.createElement('div');
-const textoTarefa = document.createElement('p');
-const categoriaTarefa = document.createElement('span');
-
-textoTarefa.classList.add('texto-tarefa');
-categoriaTarefa.classList.add('categoria-tarefa');  
-
-textoTarefa.textContent = tarefa.textoTarefa;
-categoriaTarefa.textContent = tarefa.categoria;
-
-// elementos adcionados as seguintes variaveis:
-//itemTarefa, informacoesTarefa, statusTarefa, textoTarefa, categoriaTarefa
-//proximo passo: adicionar os elementos a pagina, usando appendChild ou append
+});  
