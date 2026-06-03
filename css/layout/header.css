@@ -1,0 +1,47 @@
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.saudacao-usuario h1 {
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+.saudacao-usuario p {
+    color: #344648;
+}
+
+.usuario-logado {
+    background: rgba(255, 255, 255, 0.5);
+
+    padding: 15px 20px;
+
+    border-radius: 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#botaoDeslogar {
+    border: none;
+
+    background: #344648;
+
+    color: #FBE0C3;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+#botaoDeslogar:hover {
+    background: #7D8E95;
+}

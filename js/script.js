@@ -42,6 +42,7 @@ form.addEventListener("submit", function (event) {
     // adiciona tarefa no array
     tarefas.push(tarefa);
 
+
     // CRIAÇÃO DOS ELEMENTOS
     
     // card principal da tarefa
@@ -75,9 +76,17 @@ form.addEventListener("submit", function (event) {
     horaTarefa.textContent = tarefa.hora;
 
     // botão da tarefa
-    const botaoStatus = document.createElement('button');
+    const botaoStatus = document.createElement('button'); 
     botaoStatus.classList.add('botao-status');
     botaoStatus.textContent = "Concluir";
+
+    const botaoExcluir = document.createElement('button');
+    botaoExcluir.classList.add('botao-remover');
+    botaoExcluir.textContent = "Excluir";   
+
+    const botaoEditar = document.createElement('button');
+    botaoEditar.classList.add('botao-editar');
+    botaoEditar.textContent = "Editar";
     
     // MONTAGEM DA ESTRUTURA
     itemTarefa.appendChild(statusTarefa);
@@ -86,6 +95,8 @@ form.addEventListener("submit", function (event) {
     itemTarefa.appendChild(dataTarefa);
     itemTarefa.appendChild(horaTarefa);
     itemTarefa.appendChild(botaoStatus);
+    itemTarefa.appendChild(botaoEditar);
+    itemTarefa.appendChild(botaoExcluir);
 
     // adiciona o card na tela
     listaTarefas.appendChild(itemTarefa);
@@ -102,4 +113,12 @@ form.addEventListener("submit", function (event) {
 
     console.log(tarefas);
 
+
+
 });  
+
+function botaoConcluir() {
+  
+    document.addEventListener('click', function(event) {
+        if(event)
+}

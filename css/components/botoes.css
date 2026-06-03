@@ -1,0 +1,73 @@
+#botaoAdicionar {
+    border: none;
+
+    background: #344648;
+
+    color: #FBE0C3;
+
+    padding: 14px 24px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    font-weight: bold;
+}
+
+#botaoAdicionar:hover {
+    background: #7D8E95;
+}
+
+.botao-status,
+.botao-editar,
+.botao-remover {
+    border: none;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    font-weight: bold;
+}
+
+/* botão concluir */
+
+.botao-status {
+    background: #344648;
+
+    color: #FBE0C3;
+}
+
+.botao-status:hover {
+    background: #7D8E95;
+}
+
+/* botão editar */
+
+.botao-editar {
+    background: #FFBB98;
+
+    color: #344648;
+}
+
+.botao-editar:hover {
+    opacity: 0.8;
+}
+
+/* botão remover */
+
+.botao-remover {
+    background: #d9534f;
+
+    color: white;
+}
+
+.botao-remover:hover {
+    opacity: 0.8;
+}
