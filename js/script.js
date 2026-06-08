@@ -117,8 +117,99 @@ form.addEventListener("submit", function (event) {
 
 });  
 
-function botaoConcluir() {
-  
-    document.addEventListener('click', function(event) {
-        if(event)
-}
+
+function botaoConcluir(){
+
+   listaTarefas.addEventListener("click", function(event) {
+
+    if (event.target.classList.contains("botao-status")) {
+
+        const tarefa = event.target.closest(".item-tarefa");
+        const status = tarefa.querySelector(".status-tarefa");
+
+        if (status.classList.contains("pendente")) {
+
+            status.textContent = "Concluída"; //muda status para concluída
+            status.classList.remove("pendente"); //remove classe pendente
+            status.classList.add("concluida"); //adciona classe concluida (CSS)
+
+            event.target.textContent = "Marcar como Pendente";
+
+        } else {
+
+            status.textContent = "Pendente";
+            status.classList.remove("concluida");
+            status.classList.add("pendente");
+
+            event.target.textContent = "Concluir"; // aplicar o target sempre que mudar um elemento individual
+    }
+
+}});
+} botaoConcluir();
+
+
+function botaoEditar(){
+    listaTarefas.addEventListener("click", function(event) {
+
+        const tarefa = event.target.closest(".item-tarefa"); //seleciona apenas o card da tarefa que foi clicada
+        
+        if(event.target.classList.contains("botao-editar")){ // verifico se o botão clicado é o editar
+            
+            const textoTarefaEditar = tarefa.querySelector(".texto-tarefa"); //seleciona o texto da tarefa dentro do card
+            
+            const input = document.createElement("input"); //cria um input
+            input.classList.add("input-editar"); //adiciona uma classe para o input (CSS)
+            input.value = textoTarefaEditar.textContent; //coloca o valor do texto da tarefa no input
+            input.classList.add("input-editar"); //adiciona uma classe para o input (CSS)
+
+            textoTarefaEditar.replaceWith(input); //substitui o texto da tarefa pelo input
+
+            event.target.textContent = "Salvar"; //muda o texto do botão para salvar
+            event.target.classList.remove("botao-editar"); //remove a classe do botão editar
+            event.target.classList.add("botao-salvar"); //adiciona a classe do botão salvar
+
+
+        }else if(event.target.classList.contains("botao-salvar")){
+
+            const input = tarefa.querySelector(".input-editar"); //seleciona o input dentro do card
+            if (!input.value.trim()) {
+
+                input.value = "";
+                input.placeholder = "Por favor, digite algo para editar!";
+                input.focus();
+                return;
+            }
+            
+            const p = document.createElement("p"); //cria um elemento p
+            p.classList.add("texto-tarefa"); //adiciona a classe do texto da tarefa
+            p.textContent = input.value.trim(); //coloca o valor do input no texto da tarefa, e remove os espaços em branco
+
+            input.replaceWith(p); //substitui o input pelo texto da tarefa
+
+            event.target.textContent = "Editar"; //muda o texto do botão para editar
+            event.target.classList.remove("botao-salvar"); //remove a classe do botão salvar
+            event.target.classList.add("botao-editar"); //adiciona a classe do botão editar
+
+
+
+}});
+};
+botaoEditar();
+
+function botaoExcluir(){
+    listaTarefas.addEventListener("click", function(event){
+        if(event.target.classList.contains("botao-remover")){
+            const tarefa = event.target.closest(".item-tarefa"); //seleciona apenas o card da tarefa que foi clicada
+
+            const confirmacao = confirm("Tem certeza que deseja excluir esta tarefa?"); //pergunta de confirmação
+
+            if(confirmacao){
+                tarefa.remove();
+            } else{
+                return;
+            }
+    }});
+} botaoExcluir();
+
+
+//proximo passo: arrumar data e hora para brasileiro, e depois arrumar a visualização das tarefas do aside

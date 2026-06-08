@@ -71,3 +71,24 @@
 .botao-remover:hover {
     opacity: 0.8;
 }
+
+.botao-salvar{
+    border: none;
+
+    background: #344648;
+
+    color: #FBE0C3;
+
+    padding: 10px 16px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+    font-weight: bold;
+    background: #5ba097;
+
+    color: white;
+}

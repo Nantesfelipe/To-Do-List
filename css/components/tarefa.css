@@ -55,7 +55,7 @@
 }
 
 .concluida {
-    background: #7D8E95;
+    background: #5ba097;
 
     color: white;
 }
@@ -102,4 +102,16 @@
     gap: 10px;
 
     margin-top: 15px;
+}
+
+.input-editar{
+    padding: 8px 12px;
+
+    border-radius: 8px;
+
+    border: 1px solid #ccc;
+
+    font-size: 14px;
+
+    flex: 1;
 }
