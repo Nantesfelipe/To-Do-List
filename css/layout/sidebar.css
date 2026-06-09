@@ -1,6 +1,6 @@
 .barra-lateral {
     width: 280px;
-
+    height: 100vh;
     background: #344648;
 
     padding: 20px 10px;
@@ -17,55 +17,27 @@
     font-size: 20px;
 }
 
-.menu-lateral ul,
+.secao-categorias h3 {
+    margin-bottom: 15px;
+    color: #FFBB98;
+}
+
 .secao-categorias ul {
     list-style: none;
 
     display: flex;
     flex-direction: column;
-
     gap: 12px;
-}
 
-.menu-lateral button {
-    width: 100%;
-
-    border: none;
-
-    background: transparent;
-
-    color: #FBE0C3;
-
-    padding: 10px;
-
-    border-radius: 12px;
-
-    text-align: left;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-
-    font-size: 15px;
-}
-
-.menu-lateral button:hover {
-    background: #7D8E95;
-}
-
-.secao-categorias h3 {
-    margin-bottom: 15px;
-
-    color: #FFBB98;
+    padding: 0;
+    margin: 0;
 }
 
 .secao-categorias li {
     background: rgba(255, 255, 255, 0.05);
-
     color: #FBE0C3;
 
     padding: 12px 14px;
-
     border-radius: 12px;
 
     display: flex;
@@ -77,11 +49,10 @@
     width: 28px;
     height: 28px;
 
-    border-radius: 50%;
-
     background: #FFBB98;
-
     color: #344648;
+
+    border-radius: 50%;
 
     display: flex;
     justify-content: center;

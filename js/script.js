@@ -1,3 +1,5 @@
+
+//tarefas 
 const form = document.querySelector('#formulario-tarefa');
 const usuario = JSON.parse(localStorage.getItem("users")) || [];
 const inputTarefa = document.querySelector('#inputTarefa');
@@ -8,8 +10,11 @@ const mensagemErro = document.querySelector('#mensagemErro');
 const listaTarefas = document.querySelector('#listaTarefas');
 const tarefas = [];
 
+//aside de navegação [categorias]
+const menuLateral = document.querySelector('#menuLateral');
 
 
+//
 form.addEventListener("submit", function (event) {
 
     event.preventDefault();
@@ -67,8 +72,10 @@ form.addEventListener("submit", function (event) {
 
     // data da tarefa
     const dataTarefa = document.createElement('p');
+    const data = new Date(tarefa.data);
+
     dataTarefa.classList.add('data-tarefa');
-    dataTarefa.textContent = tarefa.data;
+    dataTarefa.textContent = data.toLocaleDateString('pt-BR'); // formata a data para o formato brasileiro
 
     // hora da tarefa
     const horaTarefa = document.createElement('p');
@@ -212,4 +219,3 @@ function botaoExcluir(){
 } botaoExcluir();
 
 
-//proximo passo: arrumar data e hora para brasileiro, e depois arrumar a visualização das tarefas do aside
