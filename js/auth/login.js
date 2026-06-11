@@ -14,6 +14,10 @@ form.addEventListener("submit", function (event) {
 
     if (user && user.senha === senhaLogin) {
 
+        localStorage.setItem(
+            "usuarioLogado",
+            JSON.stringify(user)
+        );
 
         mensagem.innerHTML = "<h2 style='color:green; text-align: center;'>Login bem sucedido!</h2>";
         setTimeout(() => {
@@ -23,7 +27,10 @@ form.addEventListener("submit", function (event) {
       
 
     } else {
-        mensagem.innerHTML = "<h2 style='color:red; text-align: center;'>Usuário inválido</h2>";
+        mensagem.innerHTML = "<h2 style='color:red; text-align: center;'>Usuário inválido</h2> <p style='color:red'>Registre-se!</p>";
+        setTimeout(()=>{
+            window.location.href = "/pages/register.html";
+        },2000)
     }
 
 

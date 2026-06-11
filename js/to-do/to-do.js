@@ -1,6 +1,18 @@
-//tarefas
+
 const form = document.querySelector('#formulario-tarefa');
-const usuario = JSON.parse(localStorage.getItem("users")) || [];
+
+const usuarioLogado = JSON.parse(
+    localStorage.getItem("usuarioLogado")
+);
+ 
+
+//validação de login
+if(!usuarioLogado){
+    window.location.href = "../index.html"
+}
+
+document.querySelector('#nicknameLogin').textContent = usuarioLogado.nickname;
+document.querySelector('#nicknameOla').textContent = usuarioLogado.nickname;
 
 const inputTarefa = document.querySelector('#inputTarefa');
 const inputData = document.querySelector('#inputData');
@@ -9,7 +21,12 @@ const inputCategoria = document.querySelector('#inputCategoria');
 
 const mensagemErro = document.querySelector('#mensagemErro');
 const listaTarefas = document.querySelector('#listaTarefas');
-const tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
+
+const todasTarefas = JSON.parse(localStorage.getItem("tarefas")) || {};
+const emailUsuario = usuarioLogado.email;
+
+todasTarefas[emailUsuario] = todasTarefas[emailUsuario] || []
+const tarefas = todasTarefas[emailUsuario];
 
 const contador = document.querySelector("#contadorTarefas");
 const contadorTrabalho = document.querySelector("#contadorTrabalho");
@@ -42,8 +59,10 @@ form.addEventListener("submit", function (event) {
         categoria: valorCategoriaTarefa,
         hora: valorHoraTarefa,
         data: valorDataTarefa,
+        propietario: usuarioLogado.email
     };
-
+    
+    
     // adiciona tarefa no array
     tarefas.push(tarefa);
 
@@ -63,7 +82,6 @@ form.addEventListener("submit", function (event) {
     inputHora.value = "";
     inputCategoria.value = "";
 });
-
 
 // CRIAÇÃO DOS ELEMENTOS
 
@@ -285,18 +303,36 @@ function contadorCategorias(){
 
 function salvarTarefas(){
 
+    const todasTarefas = JSON.parse(localStorage.getItem("tarefas")) || {};
+
+    todasTarefas[usuarioLogado.email] = tarefas;
+
     localStorage.setItem(
         "tarefas",
-        JSON.stringify(tarefas)
+        JSON.stringify(todasTarefas)
     );
 }
 
 function renderizarTarefas(){
 
+    listaTarefas.innerHTML = "";
     tarefas.forEach(tarefa => {
         criarTarefas(tarefa);
     });
 }
+
+botaoDeslogar = document.querySelector('#botaoDeslogar');
+
+botaoDeslogar.addEventListener("click", function(event){
+const containerMensagemLogado = document.querySelector('#usuarioLogado');
+containerMensagemLogado.textContent = "Saindo..."
+
+botaoDeslogar.style.display = "none";
+    setTimeout(() => {
+            window.location.href = "../index.html";
+        }, 3000); 
+})
+
 
 renderizarTarefas();
 contadorTarefas();

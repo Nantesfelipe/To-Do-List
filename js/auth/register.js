@@ -9,7 +9,7 @@ form.addEventListener("submit", function (event) {
     //3. Pegar email e senha 
     const emailRegister = document.querySelector('#emailRegister').value;
     const passwordRegister = document.querySelector('#passwordRegister').value;
-
+    const nickname = document.querySelector('#nickname').value;
 
     const erro = document.getElementById('mensagemDeErro');
     const sucesso = document.getElementById('mensagemDeSucesso');
@@ -35,14 +35,16 @@ form.addEventListener("submit", function (event) {
     if (existeUsers) {
         erro.textContent = "Usuário já existe!"
         setTimeout(() => {
-            window.location.href = "index.html";
+            window.location.href = "/index.html";
         }, 3000);
         sucesso.innerHTML = ("<h2 style='color:green;'>Usuário ja cadastrado!</h2>");
 
     } else {
         users.push({
+            nickname,
             email: emailRegister,
             senha: passwordRegister
+            
         });
 
         sucesso.textContent = "Usuário cadastrado com sucesso!"
@@ -58,9 +60,6 @@ form.addEventListener("submit", function (event) {
         
     localStorage.setItem("users", JSON.stringify(users));  //salva no localstorage e transforma o objeto em string
     }
-
-
-
 
 });
 
