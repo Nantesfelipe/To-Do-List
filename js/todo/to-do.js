@@ -1,17 +1,21 @@
-
-//tarefas 
+//tarefas
 const form = document.querySelector('#formulario-tarefa');
 const usuario = JSON.parse(localStorage.getItem("users")) || [];
+
 const inputTarefa = document.querySelector('#inputTarefa');
 const inputData = document.querySelector('#inputData');
 const inputHora = document.querySelector('#inputHora');
 const inputCategoria = document.querySelector('#inputCategoria');
+
 const mensagemErro = document.querySelector('#mensagemErro');
 const listaTarefas = document.querySelector('#listaTarefas');
-const tarefas = [];
+const tarefas = JSON.parse(localStorage.getItem("tarefas")) || [];
 
-//aside de navegação [categorias]
-const menuLateral = document.querySelector('#menuLateral');
+const contador = document.querySelector("#contadorTarefas");
+const contadorTrabalho = document.querySelector("#contadorTrabalho");
+const contadorEstudos = document.querySelector("#contadorEstudos");
+const contadorPessoal = document.querySelector("#contadorPessoal");
+const contadorSaude = document.querySelector("#contadorSaude");
 
 
 //
@@ -25,34 +29,50 @@ form.addEventListener("submit", function (event) {
     const valorHoraTarefa = inputHora.value;
     const valorCategoriaTarefa = inputCategoria.value;
 
-
-
     // validação
     if (!valorTextoTarefa || !valorDataTarefa || !valorHoraTarefa || !valorCategoriaTarefa) {
         mensagemErro.textContent = "Por favor, preencha todos os campos!";
         return;
     }
 
-
-
     // objeto da tarefa
     const tarefa = {
+        id: Date.now(), // gera um ID único com base no timestamp
         textoTarefa: valorTextoTarefa,
         categoria: valorCategoriaTarefa,
         hora: valorHoraTarefa,
         data: valorDataTarefa,
     };
 
-
     // adiciona tarefa no array
     tarefas.push(tarefa);
 
+    contadorTarefas(); //atualiza o contador de tarefas
+    contadorCategorias(); //atualiza o contador de categorias
 
-    // CRIAÇÃO DOS ELEMENTOS
-    
+    criarTarefas(tarefa);
+
+    salvarTarefas();
+
+    // limpa mensagem de erro
+    mensagemErro.textContent = "";
+
+    // limpa os inputs
+    inputTarefa.value = "";
+    inputData.value = "";
+    inputHora.value = "";
+    inputCategoria.value = "";
+});
+
+
+// CRIAÇÃO DOS ELEMENTOS
+
+function criarTarefas(tarefa){
+
     // card principal da tarefa
     const itemTarefa = document.createElement('div');
     itemTarefa.classList.add('item-tarefa');
+    itemTarefa.dataset.id = tarefa.id; // adiciona o ID da tarefa como um atributo data-id no card, para facilitar a identificação posteriormente
 
     // status da tarefa
     const statusTarefa = document.createElement('div');
@@ -83,18 +103,18 @@ form.addEventListener("submit", function (event) {
     horaTarefa.textContent = tarefa.hora;
 
     // botão da tarefa
-    const botaoStatus = document.createElement('button'); 
+    const botaoStatus = document.createElement('button');
     botaoStatus.classList.add('botao-status');
     botaoStatus.textContent = "Concluir";
 
     const botaoExcluir = document.createElement('button');
     botaoExcluir.classList.add('botao-remover');
-    botaoExcluir.textContent = "Excluir";   
+    botaoExcluir.textContent = "Excluir";
 
     const botaoEditar = document.createElement('button');
     botaoEditar.classList.add('botao-editar');
     botaoEditar.textContent = "Editar";
-    
+
     // MONTAGEM DA ESTRUTURA
     itemTarefa.appendChild(statusTarefa);
     itemTarefa.appendChild(textoTarefa);
@@ -108,22 +128,8 @@ form.addEventListener("submit", function (event) {
     // adiciona o card na tela
     listaTarefas.appendChild(itemTarefa);
 
-    // limpa mensagem de erro
-    mensagemErro.textContent = "";
-
-
-    // limpa os inputs
-    inputTarefa.value = "";
-    inputData.value = "";
-    inputHora.value = "";
-    inputCategoria.value = "";
-
     console.log(tarefas);
-
-
-
-});  
-
+}
 
 function botaoConcluir(){
 
@@ -149,25 +155,27 @@ function botaoConcluir(){
             status.classList.add("pendente");
 
             event.target.textContent = "Concluir"; // aplicar o target sempre que mudar um elemento individual
+        }
     }
-
-}});
-} botaoConcluir();
-
+   });
+}
+botaoConcluir();
 
 function botaoEditar(){
+
     listaTarefas.addEventListener("click", function(event) {
 
         const tarefa = event.target.closest(".item-tarefa"); //seleciona apenas o card da tarefa que foi clicada
-        
+
+        if (!tarefa) return;
+
         if(event.target.classList.contains("botao-editar")){ // verifico se o botão clicado é o editar
-            
+
             const textoTarefaEditar = tarefa.querySelector(".texto-tarefa"); //seleciona o texto da tarefa dentro do card
-            
+
             const input = document.createElement("input"); //cria um input
             input.classList.add("input-editar"); //adiciona uma classe para o input (CSS)
             input.value = textoTarefaEditar.textContent; //coloca o valor do texto da tarefa no input
-            input.classList.add("input-editar"); //adiciona uma classe para o input (CSS)
 
             textoTarefaEditar.replaceWith(input); //substitui o texto da tarefa pelo input
 
@@ -175,10 +183,10 @@ function botaoEditar(){
             event.target.classList.remove("botao-editar"); //remove a classe do botão editar
             event.target.classList.add("botao-salvar"); //adiciona a classe do botão salvar
 
-
         }else if(event.target.classList.contains("botao-salvar")){
 
             const input = tarefa.querySelector(".input-editar"); //seleciona o input dentro do card
+
             if (!input.value.trim()) {
 
                 input.value = "";
@@ -186,7 +194,7 @@ function botaoEditar(){
                 input.focus();
                 return;
             }
-            
+
             const p = document.createElement("p"); //cria um elemento p
             p.classList.add("texto-tarefa"); //adiciona a classe do texto da tarefa
             p.textContent = input.value.trim(); //coloca o valor do input no texto da tarefa, e remove os espaços em branco
@@ -197,25 +205,99 @@ function botaoEditar(){
             event.target.classList.remove("botao-salvar"); //remove a classe do botão salvar
             event.target.classList.add("botao-editar"); //adiciona a classe do botão editar
 
+            //atualização do objeto:
 
+            const card = event.target.closest(".item-tarefa");
+            const id = Number(card.dataset.id);
 
-}});
-};
+            const tarefaEncontrada = tarefas.find(
+                tarefa => tarefa.id === id
+            );
+
+            if (tarefaEncontrada) {
+                tarefaEncontrada.textoTarefa = input.value.trim();
+                salvarTarefas();
+            }
+        }
+    });
+}
 botaoEditar();
 
 function botaoExcluir(){
-    listaTarefas.addEventListener("click", function(event){
-        if(event.target.classList.contains("botao-remover")){
-            const tarefa = event.target.closest(".item-tarefa"); //seleciona apenas o card da tarefa que foi clicada
 
+    listaTarefas.addEventListener("click", function(event){
+
+        if(event.target.classList.contains("botao-remover")){
+
+            const card = event.target.closest(".item-tarefa"); //seleciona apenas o card da tarefa que foi clicada
             const confirmacao = confirm("Tem certeza que deseja excluir esta tarefa?"); //pergunta de confirmação
+            const id = Number(card.dataset.id); //pega o ID da tarefa a partir do atributo data-id do card
 
             if(confirmacao){
-                tarefa.remove();
+
+                const indice = tarefas.findIndex(
+                    tarefa => tarefa.id === id
+                );
+
+                if(indice !== -1){
+
+                    tarefas.splice(indice, 1); //remove a tarefa do array
+
+                    salvarTarefas();
+
+                    contadorTarefas(); //atualiza o contador de tarefas
+                    contadorCategorias(); //atualiza o contador de categorias
+                }
+
+                card.remove();
+
             } else{
                 return;
             }
-    }});
-} botaoExcluir();
+        }
+    });
+}
+botaoExcluir();
 
+function contadorTarefas(){
 
+    contador.textContent = tarefas.length; //atualiza o contador com a quantidade de tarefas no array
+}
+
+function contadorCategorias(){
+
+    contadorTrabalho.textContent = tarefas.filter(tarefa =>{
+        return tarefa.categoria === 'Trabalho';
+    }).length;
+
+    contadorEstudos.textContent = tarefas.filter(tarefa =>{
+        return tarefa.categoria === 'Estudos';
+    }).length;
+
+    contadorPessoal.textContent = tarefas.filter(tarefa =>{
+        return tarefa.categoria === 'Pessoal';
+    }).length;
+
+    contadorSaude.textContent = tarefas.filter(tarefa =>{
+        return tarefa.categoria === 'Saúde';
+    }).length;
+}
+
+function salvarTarefas(){
+
+    localStorage.setItem(
+        "tarefas",
+        JSON.stringify(tarefas)
+    );
+}
+
+function renderizarTarefas(){
+
+    tarefas.forEach(tarefa => {
+        criarTarefas(tarefa);
+    });
+}
+
+renderizarTarefas();
+contadorTarefas();
+contadorCategorias();

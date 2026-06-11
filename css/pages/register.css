@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: linear-gradient(135deg, #FBE0C3, #344648);
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    width: 350px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+form h1{
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.input-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.input-group label{
+    font-size: 14px;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group input{
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.input-group input:focus{
+    border-color: #344648;
+    box-shadow: 0 0 5px rgba(66, 125, 129, 0.5);
+}
+
+button{
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #344648;
+    color: #FBE0C3;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 10px;
+}
+
+button:hover{
+    background-color: #FBE0C3;
+    color:#344648;
+}
+
+#mensagemDeErro{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #e63946;
+}
+
+#mensagemDeSucesso{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #2a9d8f;
+}

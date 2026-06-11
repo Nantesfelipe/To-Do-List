@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" href="/img/search_7942132.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/pages/to-do.css">
+    <link rel="stylesheet" href="/css/responsive/media-To-do.css">
+
+    <title>To-Do List</title>
+</head>
+
+<body>
+
+    <aside class="barra-lateral">
+
+        <div class="logo">
+            <h2>To-Do List</h2>
+        </div>
+
+        <!-- <nav class="menu-lateral" id="menuLateral">
+
+            <ul>
+
+                <li>
+                    <button class="todas-as-tarefas" data-categoria="todas-as-tarefas" >Todas as tarefas</button>
+                </li>
+
+                <li>
+                    <button class="pendentes" data-categoria="pendentes">Pendentes</button>
+                </li>
+
+                <li>
+                    <button class="concluidas" data-categoria="concluidas">Concluídas</button>
+                </li>
+
+                <li>
+                    <button class="hoje" data-categoria="hoje">Hoje</button>
+                </li>
+
+                <li>
+                    <button data-categoria="importantes">Importantes</button>
+                </li>
+
+            </ul>
+
+        </nav> -->
+
+        <section class="secao-categorias">
+
+            <h3>Categorias</h3>
+
+            <ul>
+
+                <li>
+                    <span>Trabalho</span>
+                    <span class="contador" id="contadorTrabalho">0</span>
+                </li>
+
+                <li>
+                    <span>Estudos</span>
+                    <span class="contador" id="contadorEstudos">0</span>
+                </li>
+
+                <li>
+                    <span>Pessoal</span>
+                    <span class="contador" id="contadorPessoal">0</span>
+                </li>
+
+                <li>
+                    <span>Saúde</span>
+                    <span class="contador" id="contadorSaude">0</span>
+                </li>
+
+            </ul>
+
+        </section>
+
+        <div class="usuario-logado">
+
+            <span id="usuarioLogado">
+                Logado como Felipe
+            </span>
+
+            <button id="botaoDeslogar">
+                Sair
+            </button>
+
+        </div>
+
+    </aside>
+
+    <main class="container-principal">
+
+        <header class="cabecalho">
+
+            <div class="saudacao-usuario">
+
+                <h1 id="nomeUsuario">
+                    Olá, Usuário 👋
+                </h1>
+
+                <p>
+                    Aqui está o que você precisa fazer hoje.
+                </p>
+
+            </div>
+
+
+
+        </header>
+
+
+
+
+        <form class="formulario-tarefa" id="formulario-tarefa">
+
+            <div class="adcionar-tarefa">
+                <h2>Adicionar nova tarefa</h2>
+                <small id="mensagemErro"></small>
+            </div>
+
+
+
+            <div class="grupo-formulario">
+
+                <input type="text" id="inputTarefa" placeholder="O que precisa ser feito?">
+
+
+                <input type="date" id="inputData">
+
+                <input type="time" id="inputHora">
+
+                <select id="inputCategoria">
+
+                    <option value="" disabled selected>
+                        Categoria
+                    </option>
+
+                    <option value="Trabalho">
+                        Trabalho
+                    </option>
+
+                    <option value="Estudos">
+                        Estudos
+                    </option>
+
+                    <option value="Saúde">
+                        Saúde
+                    </option>
+
+                    <option value="Pessoal">
+                        Pessoal
+                    </option>
+
+                </select>
+
+                <button type="submit" id="botaoAdicionar">
+                    Adicionar
+                </button>
+
+
+            </div>
+
+        </form>
+
+
+
+
+        <section class="secao-tarefas">
+
+            <div class="cabecalho-tarefas">
+
+                <h2>Todas suas tarefas</h2>
+
+                <span class="contador" id="contadorTarefas">
+                    
+                </span>
+
+            </div>
+
+
+            <div id="listaTarefas">
+
+                
+                <!-- <div class="item-tarefa">
+
+                    <div class="status-tarefa pendente">
+                        Pendente
+                    </div>
+
+                    <p class="texto-tarefa">
+                        Estudar JavaScript
+                    </p>
+
+                    <span class="categoria-tarefa">
+                        Trabalho
+                    </span>
+
+                    <p class="data-tarefa">
+                        18/05/2026
+                    </p>
+
+                    <p class="hora-tarefa">
+                        19:00
+                    </p>
+
+                    <div class="acoes-tarefa">
+
+                        <button class="botao-status">
+                            Concluir
+                        </button>
+
+                        <button class="botao-editar">
+                            Editar
+                        </button>
+
+                        <button class="botao-remover">
+                            Excluir
+                        </button>
+
+                    </div>
+
+
+
+                </div> -->
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <script src="/js/todo/to-do.js"></script>
+</body>
+
+</html>
